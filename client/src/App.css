@@ -163,7 +163,6 @@ label {
 }
 
 .cancel_edit {
-  display: none;
   margin-top: 10px;
   background-color: #e6425e !important;
 }
@@ -203,6 +202,10 @@ label {
 
   .conatiner_of_list_of_transactions {
     width: 90vw;
+  }
+
+  .error {
+    color: red;
   }
 
   ul {
