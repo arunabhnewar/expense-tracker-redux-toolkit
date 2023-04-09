@@ -11,6 +11,12 @@
       "type": "expense",
       "amount": 16000,
       "id": 2
+    },
+    {
+      "name": "Help Desk Dashboard",
+      "amount": "2700",
+      "type": "income",
+      "id": 3
     }
   ]
 }

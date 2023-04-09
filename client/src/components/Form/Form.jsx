@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTransactions } from "../../features/transaction/transactionSlice";
+import {
+  changeTransaction,
+  createTransactions,
+} from "../../features/transaction/transactionSlice";
 
 const Form = () => {
   // use selector
   const { isLoading, isError } = useSelector(state => state.transaction);
+  const { editing } = useSelector(state => state.transaction) || {};
 
   // dispatch
   const dispatch = useDispatch();
@@ -14,6 +18,20 @@ const Form = () => {
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("");
   const [editMode, setEditMode] = useState(false);
+
+  // listen for edit mode active
+  useEffect(() => {
+    const { id, name, amount, type } = editing || {};
+    if (id) {
+      setEditMode(true);
+      setName(name);
+      setType(type);
+      setAmount(amount);
+    } else {
+      setEditMode(false);
+      reset();
+    }
+  }, [editing]);
 
   // reset handler
   const reset = () => {
@@ -35,6 +53,23 @@ const Form = () => {
     reset();
   };
 
+  // Update handle
+  const handleUpdate = e => {
+    e.preventDefault();
+    dispatch(
+      changeTransaction({
+        id: editing?.id,
+        data: {
+          name: name,
+          amount: amount,
+          type: type,
+        },
+      })
+    );
+    setEditMode(false);
+    reset();
+  };
+
   // Cancel mode handle
   const cancelEditMode = () => {
     reset();
@@ -45,7 +80,7 @@ const Form = () => {
     <div className='form'>
       <h3>Add new transaction</h3>
 
-      <form onSubmit={handleCreate}>
+      <form onSubmit={editMode ? handleUpdate : handleCreate}>
         <div className='form-group'>
           <label htmlFor='transaction_name'>Name</label>
           <input
@@ -97,7 +132,7 @@ const Form = () => {
         </div>
 
         <button disabled={isLoading} className='btn' type='submit'>
-          Add Transaction
+          {editMode ? "Update Transaction" : "Add Transaction"}
         </button>
 
         {!isLoading && isError && (

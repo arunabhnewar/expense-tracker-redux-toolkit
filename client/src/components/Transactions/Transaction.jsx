@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import deleteImage from "../../assets/images/delete.svg";
 import editImage from "../../assets/images/edit.svg";
+import { editActive } from "../../features/transaction/transactionSlice";
 
 const Transaction = ({ transaction }) => {
   // dispatch
