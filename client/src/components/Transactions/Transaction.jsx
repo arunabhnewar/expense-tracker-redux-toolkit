@@ -2,18 +2,26 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import deleteImage from "../../assets/images/delete.svg";
 import editImage from "../../assets/images/edit.svg";
-import { editActive } from "../../features/transaction/transactionSlice";
+import {
+  editActive,
+  removeTransaction,
+} from "../../features/transaction/transactionSlice";
 
 const Transaction = ({ transaction }) => {
   // dispatch
   const dispatch = useDispatch();
 
   // destructure the transaction
-  const { name, amount, type } = transaction || {};
+  const { name, amount, type, id } = transaction || {};
 
   //edit handler
   const handleEdit = () => {
     dispatch(editActive(transaction));
+  };
+
+  // handle delete
+  const handleDelete = () => {
+    dispatch(removeTransaction(id));
   };
 
   return (
@@ -25,7 +33,7 @@ const Transaction = ({ transaction }) => {
           <button className='link' onClick={handleEdit}>
             <img className='icon' src={editImage} />
           </button>
-          <button className='link'>
+          <button className='link' onClick={handleDelete}>
             <img className='icon' src={deleteImage} />
           </button>
         </div>

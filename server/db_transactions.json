@@ -7,16 +7,34 @@
       "id": 1
     },
     {
-      "name": "debt",
-      "type": "expense",
-      "amount": 16000,
-      "id": 2
-    },
-    {
       "name": "Help Desk Dashboard",
       "amount": "2700",
       "type": "income",
       "id": 3
+    },
+    {
+      "name": "borua uncle shop",
+      "type": "expense",
+      "amount": 700,
+      "id": 4
+    },
+    {
+      "name": "chu debt",
+      "type": "expense",
+      "amount": 140,
+      "id": 5
+    },
+    {
+      "name": "dipto vai",
+      "type": "expense",
+      "amount": 1000,
+      "id": 7
+    },
+    {
+      "name": "joy vai",
+      "type": "expense",
+      "amount": 8500,
+      "id": 8
     }
   ]
 }
